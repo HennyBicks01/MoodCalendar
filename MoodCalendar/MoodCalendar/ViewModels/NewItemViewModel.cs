@@ -11,19 +11,21 @@ namespace MoodCalendar.ViewModels
     {
         private string text;
         private string description;
+        private string dateAndDay;
 
         public NewItemViewModel()
         {
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
-            this.PropertyChanged +=
-                (_, __) => SaveCommand.ChangeCanExecute();
+            this.PropertyChanged += (_, __) => SaveCommand.ChangeCanExecute();
+
+            // Set the initial value of date and day
+            DateAndDay = DateTime.Now.ToString("D");
         }
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !String.IsNullOrWhiteSpace(text) && !String.IsNullOrWhiteSpace(description);
         }
 
         public string Text
@@ -36,6 +38,12 @@ namespace MoodCalendar.ViewModels
         {
             get => description;
             set => SetProperty(ref description, value);
+        }
+
+        public string DateAndDay
+        {
+            get => dateAndDay;
+            set => SetProperty(ref dateAndDay, value);
         }
 
         public Command SaveCommand { get; }

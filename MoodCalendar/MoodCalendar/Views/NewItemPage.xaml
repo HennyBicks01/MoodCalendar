@@ -6,17 +6,41 @@
              Title="New Item"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true">
+
+    <!-- This Xamarin page is meant to be the journal entry page -->
+    <!-- We have added a label to display the date and day -->
+    <!-- We have added buttons for how the person is feeling -->
+    <!-- We have also added a description box for any extra details -->
+
     <ContentPage.Content>
         <StackLayout Spacing="3" Padding="15">
+            <!-- Date and Day Label -->
+            <Label Text="{Binding DateAndDay}" FontSize="Medium" />
+
+            <!-- Emoji Buttons -->
+            <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+                <Button Text="😃" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
+                <Button Text="😊" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
+                <Button Text="😐" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
+                <Button Text="😢" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
+                <Button Text="😔" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+
+            <!-- Text Entry -->
             <Label Text="Text" FontSize="Medium" />
             <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
+
+            <!-- Description Editor -->
             <Label Text="Description" FontSize="Medium" />
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+
+            <!-- Save and Cancel Buttons -->
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand" />
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
-    
+
 </ContentPage>
+
