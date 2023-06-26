@@ -18,13 +18,20 @@
             <Label Text="{Binding DateAndDay}" FontSize="Medium" />
 
             <!-- Emoji Buttons -->
-            <StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
-                <Button Text="😃" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
-                <Button Text="😊" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
-                <Button Text="😐" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
-                <Button Text="😢" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
-                <Button Text="😔" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" />
-            </StackLayout>
+            <Grid HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="😃" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="0" />
+                <Button Text="😊" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="1" />
+                <Button Text="😐" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="2" />
+                <Button Text="😢" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="3" />
+                <Button Text="😔" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="4" />
+            </Grid>
 
             <!-- Text Entry -->
             <Label Text="Text" FontSize="Medium" />
