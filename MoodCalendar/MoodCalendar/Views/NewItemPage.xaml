@@ -26,11 +26,11 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Text="😃" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="0" />
-                <Button Text="😊" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="1" />
-                <Button Text="😐" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="2" />
-                <Button Text="😢" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="3" />
-                <Button Text="😔" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Grid.Column="4" />
+                <Button x:Name="emojiButton1" Text="😃" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Clicked="Button_Clicked" Grid.Column="0" />
+                <Button x:Name="emojiButton2" Text="😊" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Clicked="Button_Clicked" Grid.Column="1" />
+                <Button x:Name="emojiButton3" Text="😐" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Clicked="Button_Clicked" Grid.Column="2" />
+                <Button x:Name="emojiButton4" Text="😢" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Clicked="Button_Clicked" Grid.Column="3" />
+                <Button x:Name="emojiButton5" Text="😔" FontSize="Large" BackgroundColor="Transparent" BorderColor="Transparent" HorizontalOptions="FillAndExpand" Clicked="Button_Clicked" Grid.Column="4" />
             </Grid>
 
             <!-- Text Entry -->
@@ -50,4 +50,3 @@
     </ContentPage.Content>
 
 </ContentPage>
-
