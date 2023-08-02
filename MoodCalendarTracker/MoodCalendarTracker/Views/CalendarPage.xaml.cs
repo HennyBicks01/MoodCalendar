@@ -2,8 +2,10 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static MoodCalendarTracker.ViewModels.CalendarViewModel;
 
 namespace MoodCalendarTracker.Views
 {
@@ -20,5 +22,18 @@ namespace MoodCalendarTracker.Views
             viewModel = new CalendarViewModel();
             BindingContext = viewModel;
         }
+
+        private void BackButton_Clicked(object sender, EventArgs e)
+        {
+            // Go back one month
+            viewModel.CurrentDate = viewModel.CurrentDate.AddMonths(-1);
+        }
+
+        private void ForwardButton_Clicked(object sender, EventArgs e)
+        {
+            // Go forward one month
+            viewModel.CurrentDate = viewModel.CurrentDate.AddMonths(1);
+        }
+
     }
 }

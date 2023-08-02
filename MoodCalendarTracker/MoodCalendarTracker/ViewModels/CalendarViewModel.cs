@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoodCalendarTracker.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
@@ -12,7 +13,8 @@ namespace MoodCalendarTracker.ViewModels
     public class CalendarViewModel : INotifyPropertyChanged
     {
         private DateTime currentDate;
-        private Int32 numMonth = 0;
+
+        public ICommand DateSelectedCommand { get; }
 
         public DateTime CurrentDate
         {
@@ -24,8 +26,10 @@ namespace MoodCalendarTracker.ViewModels
                     currentDate = value;
                     OnPropertyChanged(nameof(CurrentDate));
                     // When the CurrentDate changes, update the calendar
-                    numMonth = currentDate.Month;
                     InitializeCalendar(currentDate.Year, currentDate.Month);
+
+                    // Update the CurrentMonthAndYear property
+                    OnPropertyChanged(nameof(CurrentMonthAndYear));
                 }
             }
         }
@@ -38,64 +42,71 @@ namespace MoodCalendarTracker.ViewModels
             // Set the initial current date to the current month and year
             CurrentDate = DateTime.Now;
 
+            DateSelectedCommand = new Command<CalendarDay>(OnDateSelected);
+        }
+
+        private async void OnDateSelected(CalendarDay selectedDay)
+        {
+            // Handle the selected date
+            if (selectedDay != null && selectedDay.IsSelectable)
+            {
+                // Navigate to the specific view page based on the selected date
+                await Application.Current.MainPage.Navigation.PushAsync(new NewItemPage(selectedDay.Day, CurrentDate.Month, currentDate.Year));
+            }
         }
 
         private void InitializeCalendar(int year, int month)
         {
-            // Clear previous calendar days
+            // BENTODO: contact DB for dates that already have moods; change the color of the squares based on this; access through DateTime?
+
+            // Check if going past December
+            if (month > 12)
+            {
+                year++;
+                month = 1; // Move to January of the next year
+            }
+            // Check if going past January
+            else if (month < 1)
+            {
+                year--;
+                month = 12; // Move to December of the previous year
+            }
+
+            // Update the CurrentDate with the adjusted date
+            CurrentDate = new DateTime(year, month, 1);
+
+            // Clear the current calendar days
             CalendarDays.Clear();
 
-            // Calculate the number of days in the month and the first day of the month
-            int daysInMonth = DateTime.DaysInMonth(year, month);
+            // Calculate the first and last days of the month
             DateTime firstDayOfMonth = new DateTime(year, month, 1);
-            int startDayOffset = (int)firstDayOfMonth.DayOfWeek;
+            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
 
-            // Add previous month days (if any) to fill the first week
-            int prevMonthDays = DateTime.DaysInMonth(year, month - 1);
-            for (int i = 0; i < startDayOffset; i++)
+            // Calculate the number of days in the previous month
+            int daysInPreviousMonth = DateTime.DaysInMonth(firstDayOfMonth.AddMonths(-1).Year, firstDayOfMonth.AddMonths(-1).Month);
+
+            // Add the previous month days to the calendar
+            for (int i = firstDayOfMonth.DayOfWeek == DayOfWeek.Sunday ? 6 : (int)firstDayOfMonth.DayOfWeek - 1; i >= 0; i--)
             {
-                CalendarDays.Add(new CalendarDay
-                {
-                    Day = prevMonthDays - startDayOffset + i + 1,
-                    IsSelectable = false
-                });
+                CalendarDays.Add(new CalendarDay { Day = daysInPreviousMonth - i, IsSelectable = false });
             }
 
-            // Add current month days
-            for (int i = 1; i <= daysInMonth; i++)
+            // Add the current month days to the calendar
+            for (int i = 1; i <= lastDayOfMonth.Day; i++)
             {
-                CalendarDays.Add(new CalendarDay
-                {
-                    Day = i,
-                    IsSelectable = true
-                });
+                CalendarDays.Add(new CalendarDay { Day = i, IsSelectable = true });
             }
 
-
-
-            // Add next month days (if any) to fill the last week
-            int totalDays = startDayOffset + daysInMonth;
-            int remainingDays = (int)Math.Ceiling(totalDays / 7.0) * 7 - totalDays;
+            // Add the next month days to the calendar
+            int totalDays = CalendarDays.Count;
+            int remainingDays = 42 - totalDays;
             for (int i = 1; i <= remainingDays; i++)
             {
-                CalendarDays.Add(new CalendarDay
-                {
-                    Day = i,
-                    IsSelectable = false
-                });
+                CalendarDays.Add(new CalendarDay { Day = i, IsSelectable = false });
             }
-        }
 
-        public void CalendarCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Handle the selected date
-            var selectedDate = (e.CurrentSelection[0] as CalendarDay)?.Day;
-            if (selectedDate != null && (bool)e.PreviousSelection[0])
-            {
-                // Do something with the selected date
-                // For example, you could display it in a message box or navigate to another page.
-                Application.Current.MainPage.DisplayAlert("Selected Date", $"{CurrentDate.Year}-{CurrentDate.Month}-{selectedDate}", "OK");
-            }
+            // Notify that the CalendarDays collection has changed
+            OnPropertyChanged(nameof(CalendarDays));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

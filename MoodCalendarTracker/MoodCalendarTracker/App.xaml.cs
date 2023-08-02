@@ -15,9 +15,6 @@ namespace MoodCalendarTracker
 
             DependencyService.Register<MockDataStore>();
 
-            // Register the DateToColorConverter in the ResourceDictionary
-            Resources.Add("DateToColorConverter", new DateToColorConverter());
-
             MainPage = new AppShell();
         }
 

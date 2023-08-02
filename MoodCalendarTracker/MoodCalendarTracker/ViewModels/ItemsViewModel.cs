@@ -19,7 +19,7 @@ namespace MoodCalendarTracker.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "History";
+            Title = "My Past Moods";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
@@ -30,6 +30,7 @@ namespace MoodCalendarTracker.ViewModels
 
         async Task ExecuteLoadItemsCommand()
         {
+            //Here have it check to see if any of the dates have any information or data
             IsBusy = true;
 
             try

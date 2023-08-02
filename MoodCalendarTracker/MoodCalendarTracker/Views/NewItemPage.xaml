@@ -3,14 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoodCalendarTracker.Views.NewItemPage"
              Shell.PresentationMode="ModalAnimated"
-             Title="New Item"
+             Title="New Mood"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true">
+
+    <!-- Don't need to specify binding here like with the CalendarView because it's specified in the code behind-->
+    
     <ContentPage.Content>
-        <StackLayout Spacing="3" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
+        <StackLayout Spacing="5" Padding="15">
+            <!-- Display the selected date at the top -->
+            <Label x:Name="SelectedDateLabel"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="DarkSlateGray" 
+                   Text="{Binding SelectedDateMMDDYYYY}"/>
+            <Label Text="What Was Your Average Mood For Today?" FontSize="Medium"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Bad" HorizontalOptions="FillAndExpand" BackgroundColor="IndianRed" Clicked="OnMoodButtonClicked"></Button>
+                <Button Text="Neutral" HorizontalOptions="FillAndExpand" BackgroundColor="DarkOrange" Clicked="OnMoodButtonClicked"></Button>
+                <Button Text="Good" HorizontalOptions="FillAndExpand" BackgroundColor="DarkSeaGreen" Clicked="OnMoodButtonClicked"></Button>
+            </StackLayout>
+            <Label Text="How Was Your Day Today? What Did You Do Today?" FontSize="Medium" />
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
             <StackLayout Orientation="Horizontal">
                 <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
