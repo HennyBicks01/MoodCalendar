@@ -6,51 +6,70 @@ using Xamarin.Forms;
 
 namespace MoodCalendarTracker.ViewModels
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class ItemDetailViewModel : BaseViewModel
     {
-        private string itemId;
-        private string text;
-        private string description;
-        public string Id { get; set; }
+        // Existing code...
 
-        public string Text
+        public int GoodCountMonth { get; private set; }
+        public int NeutralCountMonth { get; private set; }
+        public int BadCountMonth { get; private set; }
+
+        public int GoodCountYear { get; private set; }
+        public int NeutralCountYear { get; private set; }
+        public int BadCountYear { get; private set; }
+
+        public ItemDetailViewModel() // Existing parameters...
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            // Existing code...
+
+            // Get the counts for the past month and year
+            CalculateMoodCounts();
         }
 
-        public string Description
+        private void CalculateMoodCounts()
         {
-            get => description;
-            set => SetProperty(ref description, value);
-        }
+            // Get the current date
+            DateTime currentDate = DateTime.Now;
+            DateTime monthAgo = currentDate.AddMonths(-1);
+            DateTime yearAgo = currentDate.AddYears(-1);
 
-        public string ItemId
-        {
-            get
-            {
-                return itemId;
-            }
-            set
-            {
-                itemId = value;
-                LoadItemId(value);
-            }
-        }
+            // Reset counts
+            GoodCountMonth = NeutralCountMonth = BadCountMonth = 0;
+            GoodCountYear = NeutralCountYear = BadCountYear = 0;
 
-        public async void LoadItemId(string itemId)
-        {
-            try
+            foreach (var dateStatus in GlobalVariables.DateStatus)
             {
-                var item = await DataStore.GetItemAsync(itemId);
-                Id = item.Id;
-                Text = item.Text;
-                Description = item.Description;
-            }
-            catch (Exception)
-            {
-                Debug.WriteLine("Failed to Load Item");
+                if (dateStatus.Key >= monthAgo)
+                {
+                    switch (dateStatus.Value.Item1)
+                    {
+                        case "Good":
+                            GoodCountMonth++;
+                            break;
+                        case "Neutral":
+                            NeutralCountMonth++;
+                            break;
+                        case "Bad":
+                            BadCountMonth++;
+                            break;
+                    }
+                }
+
+                if (dateStatus.Key >= yearAgo)
+                {
+                    switch (dateStatus.Value.Item1)
+                    {
+                        case "Good":
+                            GoodCountYear++;
+                            break;
+                        case "Neutral":
+                            NeutralCountYear++;
+                            break;
+                        case "Bad":
+                            BadCountYear++;
+                            break;
+                    }
+                }
             }
         }
     }
