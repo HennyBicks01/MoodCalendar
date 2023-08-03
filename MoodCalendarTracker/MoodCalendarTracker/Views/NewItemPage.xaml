@@ -35,7 +35,7 @@
             IsVisible="{Binding HasPastEntries}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding .}" />
+                        <TextCell Text="{Binding .}" TextColor="Gray"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
