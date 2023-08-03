@@ -18,6 +18,9 @@ namespace MoodCalendarTracker.ViewModels
         public int NeutralCountYear { get; private set; }
         public int BadCountYear { get; private set; }
 
+        public double AverageMoodMonth { get; private set; }
+        public double AverageMoodYear { get; private set; }
+
         public ItemsViewModel()
         {
             // Get the counts for the past month and year
