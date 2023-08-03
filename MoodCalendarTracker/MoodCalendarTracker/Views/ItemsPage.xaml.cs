@@ -26,6 +26,10 @@ namespace MoodCalendarTracker.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            // Assuming your ItemsViewModel is stored in a variable named ViewModel
+            _viewModel.CalculateMoodCounts();
+            _viewModel.CalculateAverageMoods();
         }
     }
 }

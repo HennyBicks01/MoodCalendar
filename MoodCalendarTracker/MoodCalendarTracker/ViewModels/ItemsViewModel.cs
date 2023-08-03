@@ -27,7 +27,7 @@ namespace MoodCalendarTracker.ViewModels
             CalculateMoodCounts();
         }
 
-        private void CalculateMoodCounts()
+        public void CalculateMoodCounts()
         {
             // Get the current date
             DateTime currentDate = DateTime.Now;
@@ -81,7 +81,7 @@ namespace MoodCalendarTracker.ViewModels
                 }
             }
         }
-        private void CalculateAverageMoods()
+        public void CalculateAverageMoods()
         {
             // Calculate the average mood for the past month
             int totalMoodsMonth = GoodCountMonth + NeutralCountMonth + BadCountMonth;
