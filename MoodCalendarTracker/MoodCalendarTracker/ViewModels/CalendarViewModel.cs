@@ -124,5 +124,11 @@ namespace MoodCalendarTracker.ViewModels
             public Color MoodColor { get; set; } = Color.White; // Default color for dates without a mood
 
         }
+
+        //This will force the calendar to re-render whenever the CalendarPage appears, thus updating the mood colors for each date.
+        public void RefreshCalendar()
+        {
+            InitializeCalendar(CurrentDate.Year, CurrentDate.Month);
+        }
     }
 }

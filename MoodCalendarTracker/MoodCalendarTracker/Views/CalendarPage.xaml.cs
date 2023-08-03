@@ -23,6 +23,12 @@ namespace MoodCalendarTracker.Views
             BindingContext = viewModel;
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            viewModel.RefreshCalendar();
+        }
+
         private void BackButton_Clicked(object sender, EventArgs e)
         {
             // Go back one month
