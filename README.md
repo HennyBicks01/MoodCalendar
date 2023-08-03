@@ -47,8 +47,8 @@ This API is used to manipulate dates and times, calculate durations, and format 
 
 
 *Documentation - 40 points*
-- [x] [Project title](#MoodCalendar) - 5 points
-- [x] [Team member names](#Team-Members) - 5 points
-- [x] [Project introduction](#MoodCalendar) - 10 points
-- [x] [Required skills](#Required-Skills) - 10 points
-- [x] [Project contributions](#Project-Contributions) - 10 points
+- [x] [Project title](#moodcalendar) - 5 points
+- [x] [Team member names](#team-members) - 5 points
+- [x] [Project introduction](#moodcalendar) - 10 points
+- [x] [Required skills](#required-skills) - 10 points
+- [x] [Project contributions](#project-contributions) - 10 points
