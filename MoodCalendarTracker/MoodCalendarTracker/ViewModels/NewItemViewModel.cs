@@ -1,6 +1,7 @@
 ﻿using MoodCalendarTracker.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Text;
 using System.Windows.Input;
@@ -15,11 +16,14 @@ namespace MoodCalendarTracker.ViewModels
         private int localSelectedDay;
         private int localSelectedMonth;
         private int localSelectedYear;
- // Access to global variables
 
 
         public enum _Mood { Bad, Neutral, Good };
         private _Mood selectedMood;
+        public ObservableCollection<string> PastEntries { get; set; } = new ObservableCollection<string>();
+
+        public bool HasPastEntries => PastEntries.Count > 0;
+
         public _Mood SelectedMood
         {
             get { return selectedMood; }
