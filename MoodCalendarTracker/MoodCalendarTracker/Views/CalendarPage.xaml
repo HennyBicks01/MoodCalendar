@@ -83,7 +83,7 @@
                                Margin="5">
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CalendarViewModel}}, Path=DateSelectedCommand}"
-                                          CommandParameter="{Binding Day}" />
+                                          CommandParameter="{Binding .}" />
                             </Frame.GestureRecognizers>
                             <Label Text="{Binding Day}"
                                    Style="{StaticResource CalendarDayLabelStyle}" />
