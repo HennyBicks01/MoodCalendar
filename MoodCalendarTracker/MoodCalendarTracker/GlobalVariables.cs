@@ -19,6 +19,10 @@ namespace MoodCalendarTracker
                 {
                     // Retrieve the stored data
                     var dateStatusJson = Preferences.Get("DateStatus", string.Empty);
+
+                    // Log the retrieved data
+                    Console.WriteLine("Retrieved data: " + dateStatusJson);
+
                     if (string.IsNullOrEmpty(dateStatusJson))
                     {
                         // If no data is stored, initialize a new dictionary
@@ -35,7 +39,6 @@ namespace MoodCalendarTracker
             }
         }
 
-
         // Command to save the mood, description, and date
         public static ICommand SaveCommand => new Command<Tuple<string, string, DateTime>>(SaveDateStatus);
 
@@ -46,6 +49,9 @@ namespace MoodCalendarTracker
 
             // Serialize the data
             var dateStatusJson = JsonConvert.SerializeObject(DateStatus);
+
+            // Log the serialized data
+            Console.WriteLine("Saving data: " + dateStatusJson);
 
             // Store the serialized data
             Preferences.Set("DateStatus", dateStatusJson);
