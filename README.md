@@ -10,31 +10,32 @@ Summer Gasaway
 
 ## Required Skills
 <!-- List the technical skills you needed to develop the application, the tools, or APIs (Platform specific and third party) used in the project -->
-####Xamarin.Forms: 
+
+#### Xamarin.Forms: 
 
 This is a cross-platform UI toolkit that allows developers to efficiently create native user interface layouts that can be shared across Android, iOS, and Windows Phone.
 
-####C# programming language: 
+#### C# programming language: 
 
 The entire application logic is written in C#, which is a widely-used, modern, and type-safe programming language.
 
-####Model-View-ViewModel (MVVM) design pattern: 
+#### Model-View-ViewModel (MVVM) design pattern: 
 
 This pattern helps to cleanly separate the business and presentation logic of an application from its UI, and makes it easier to unit test.
 
-####Data persistence: 
+#### Data persistence: 
 
 Techniques for persisting data across sessions are used. In this application, Xamarin.Essentials Preferences is used for data storage.
 
-####Color manipulation: 
+#### Color manipulation: 
 
 Skills in color manipulation are required to create the mood color gradients in the calendar.
 
-####DateTime API: 
+#### DateTime API: 
 
 This API is used to manipulate dates and times, calculate durations, and format dates for display.
 
-####Observable Collections: 
+#### Observable Collections: 
 
 These are used to store, retrieve, and update the data that the application uses to generate the UI.
 
@@ -53,8 +54,8 @@ Please archive the complete project/solution and submit it.
 
 
 *Documentation - 40 points*
-- [ ] Project title - 5 points
-- [ ] Team member names - 5 points
-- [ ] Project introduction - 10 points
-- [ ] Required skills - 10 points
+- [x] Project title - 5 points
+- [x] Team member names - 5 points
+- [x] Project introduction - 10 points
+- [x] Required skills - 10 points
 - [ ] Project contributions - 10 points
