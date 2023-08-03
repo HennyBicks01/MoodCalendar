@@ -16,11 +16,6 @@ namespace MoodCalendarTracker.ViewModels
         private int localSelectedMonth;
         private int localSelectedYear;
 
-        //Commands
-        public ICommand GoodCommand => GlobalVariables.GoodCommand;
-        public ICommand NeutralCommand => GlobalVariables.NeutralCommand;
-        public ICommand BadCommand => GlobalVariables.BadCommand;
-
         public enum _Mood { Bad, Neutral, Good };
         private _Mood selectedMood;
         public _Mood SelectedMood
@@ -41,9 +36,6 @@ namespace MoodCalendarTracker.ViewModels
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
-
-        // TODO: able to set mood based on 3 buttons, and type
-        //       in the summary/journal/symptoms of the day
 
         public NewItemViewModel(int selectedDay, int selectedMonth, int selectedYear)
         {
