@@ -42,11 +42,6 @@ These are used to store, retrieve, and update the data that the application uses
 ## Project Contributions
 <!-- Describe each team member's contributions to the project -->
 
-**Note:** Only one member of the team is required to submit the project.
-
-## Submission
-Please archive the complete project/solution and submit it. 
-
 ## Rubric
 
 *Project Submission - 160 points*
