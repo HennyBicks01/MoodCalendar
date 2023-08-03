@@ -1,5 +1,5 @@
 <a name="Project-Title"></a> 
-#MoodCalendar
+# MoodCalendar
 <!-- replace 'Project Title' with the title of your project -->
 <a name="Introduction"></a>
 This project is a Mood Calendar Tracker application, designed to monitor and visualize an individual's mood over time. Users record their daily mood as either "Good," "Neutral," or "Bad," and these entries are stored persistently across sessions. The application then aggregates this data to provide visual insights on a calendar, with different colors corresponding to each mood. Additionally, it offers detailed statistics, such as the number of each type of mood and the average mood over the past month, year, and all time. By using this application, users can gain a better understanding of their emotional patterns and potentially identify triggers or trends.
