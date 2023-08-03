@@ -10,76 +10,69 @@ namespace MoodCalendarTracker.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        private Item _selectedItem;
+        // Existing code...
 
-        public ObservableCollection<Item> Items { get; }
-        public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
-        public Command<Item> ItemTapped { get; }
+        public int GoodCountMonth { get; private set; }
+        public int NeutralCountMonth { get; private set; }
+        public int BadCountMonth { get; private set; }
 
-        public ItemsViewModel()
+        public int GoodCountYear { get; private set; }
+        public int NeutralCountYear { get; private set; }
+        public int BadCountYear { get; private set; }
+
+        public ItemsViewModel() // Existing parameters...
         {
-            Title = "My Past Moods";
-            Items = new ObservableCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            // Existing code...
 
-            ItemTapped = new Command<Item>(OnItemSelected);
-
-            AddItemCommand = new Command(OnAddItem);
+            // Get the counts for the past month and year
+            CalculateMoodCounts();
         }
 
-        async Task ExecuteLoadItemsCommand()
+        private void CalculateMoodCounts()
         {
-            //Here have it check to see if any of the dates have any information or data
-            IsBusy = true;
+            // Get the current date
+            DateTime currentDate = DateTime.Now;
+            DateTime monthAgo = currentDate.AddMonths(-1);
+            DateTime yearAgo = currentDate.AddYears(-1);
 
-            try
+            // Reset counts
+            GoodCountMonth = NeutralCountMonth = BadCountMonth = 0;
+            GoodCountYear = NeutralCountYear = BadCountYear = 0;
+
+            foreach (var dateStatus in GlobalVariables.DateStatus)
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
+                if (dateStatus.Key >= monthAgo)
                 {
-                    Items.Add(item);
+                    switch (dateStatus.Value.Item1)
+                    {
+                        case "Good":
+                            GoodCountMonth++;
+                            break;
+                        case "Neutral":
+                            NeutralCountMonth++;
+                            break;
+                        case "Bad":
+                            BadCountMonth++;
+                            break;
+                    }
+                }
+
+                if (dateStatus.Key >= yearAgo)
+                {
+                    switch (dateStatus.Value.Item1)
+                    {
+                        case "Good":
+                            GoodCountYear++;
+                            break;
+                        case "Neutral":
+                            NeutralCountYear++;
+                            break;
+                        case "Bad":
+                            BadCountYear++;
+                            break;
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        public void OnAppearing()
-        {
-            IsBusy = true;
-            SelectedItem = null;
-        }
-
-        public Item SelectedItem
-        {
-            get => _selectedItem;
-            set
-            {
-                SetProperty(ref _selectedItem, value);
-                OnItemSelected(value);
-            }
-        }
-
-        private async void OnAddItem(object obj)
-        {
-            await Shell.Current.GoToAsync(nameof(NewItemPage));
-        }
-
-        async void OnItemSelected(Item item)
-        {
-            if (item == null)
-                return;
-
-            // This will push the ItemDetailPage onto the navigation stack
-            await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
         }
     }
 }
