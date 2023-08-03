@@ -27,11 +27,11 @@ namespace MoodCalendarTracker
                 switch (dateStatus.Item1) // Mood is the first item in the tuple
                 {
                     case "Good":
-                        return Color.Green;
+                        return Color.FromHex("#98FB98");
                     case "Neutral":
-                        return Color.Yellow;
+                        return Color.FromHex("#FDFD96");
                     case "Bad":
-                        return Color.Red;
+                        return Color.FromHex("#FF6961");
                     default:
                         return Color.White; // Default color
                 }
@@ -41,5 +41,6 @@ namespace MoodCalendarTracker
                 return Color.White; // Default color for dates without a mood
             }
         }
+
     }
 }
