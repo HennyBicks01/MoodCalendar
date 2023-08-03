@@ -2,12 +2,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoodCalendarTracker.Views.ItemsPage"
              Title="Past Moods">
+    <!-- Add a button to the toolbar and have it be the AddNewMood command -->
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="New Entry" Command="{Binding AddNewMood}" />
     </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="20" Padding="15">
-
+        <!-- Displaying the moods for the past month-->
         <Label Text="Past Month:" FontSize="Medium" />
         <Label Text="{Binding GoodCountMonth}" FontAttributes="Bold" TextColor="DarkSeaGreen" />
         <Label Text="{Binding NeutralCountMonth}" FontAttributes="Bold" TextColor="DarkOrange" />
@@ -26,7 +27,7 @@
                 <Label Text="Good" HorizontalOptions="End"/>
             </StackLayout>
         </Grid>
-
+        <!-- Displaying the moods for the past year-->
         <Label Text="Past Year:" FontSize="Medium" />
         <Label Text="{Binding GoodCountYear}" FontAttributes="Bold" TextColor="DarkSeaGreen" />
         <Label Text="{Binding NeutralCountYear}" FontAttributes="Bold" TextColor="DarkOrange" />
@@ -45,7 +46,7 @@
                 <Label Text="Good" HorizontalOptions="End"/>
             </StackLayout>
         </Grid>
-
+        <!-- Displaying all moods logged-->
         <Label Text="All Time:" FontSize="Medium" />
         <Label Text="{Binding GoodCountAll}" FontAttributes="Bold" TextColor="DarkSeaGreen" />
         <Label Text="{Binding NeutralCountAll}" FontAttributes="Bold" TextColor="DarkOrange" />
@@ -64,7 +65,5 @@
                 <Label Text="Good" HorizontalOptions="End"/>
             </StackLayout>
         </Grid>
-
     </StackLayout>
-
 </ContentPage>

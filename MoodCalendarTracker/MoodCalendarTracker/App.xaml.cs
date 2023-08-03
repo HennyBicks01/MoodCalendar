@@ -1,5 +1,4 @@
-﻿using MoodCalendarTracker.Services;
-using MoodCalendarTracker.Views;
+﻿using MoodCalendarTracker.Views;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,9 +11,6 @@ namespace MoodCalendarTracker
         public App()
         {
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
-
             MainPage = new AppShell();
         }
 

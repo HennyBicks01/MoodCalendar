@@ -8,16 +8,16 @@ using static MoodCalendarTracker.ViewModels.NewItemViewModel;
 
 namespace MoodCalendarTracker.ViewModels
 {
+    // Functionality of the modal that pops up when tracking a new day
     public class NewItemViewModel : BaseViewModel
     {
+        // VARIABLES //
         private string description;
         private int localSelectedDay;
         private int localSelectedMonth;
         private int localSelectedYear;
-
-        public enum _Mood { Bad, Neutral, Good };
         private _Mood selectedMood;
-
+        public enum _Mood { Bad, Neutral, Good };
         public _Mood SelectedMood
         {
             get { return selectedMood; }
@@ -27,6 +27,8 @@ namespace MoodCalendarTracker.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public string SelectedDateMMDDYYYY => $"{DateTimeFormatInfo.CurrentInfo.GetMonthName(localSelectedMonth)} {localSelectedDay} {localSelectedYear}";
 
         public string Description
         {
@@ -63,8 +65,6 @@ namespace MoodCalendarTracker.ViewModels
                 OnPropertyChanged(nameof(HasPastEntries));
             }
         }
-
-        public string SelectedDateMMDDYYYY => $"{DateTimeFormatInfo.CurrentInfo.GetMonthName(localSelectedMonth)} {localSelectedDay} {localSelectedYear}";
 
         private bool ValidateSave()
         {

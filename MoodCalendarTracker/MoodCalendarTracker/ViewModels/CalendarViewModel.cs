@@ -9,8 +9,10 @@ using Xamarin.Forms;
 
 namespace MoodCalendarTracker.ViewModels
 {
+    // Functionality for the Calendar Page
     public class CalendarViewModel : INotifyPropertyChanged
     {
+        // VARIABLES //
         private DateTime currentDate;
 
         public ICommand DateSelectedCommand { get; }
@@ -33,9 +35,22 @@ namespace MoodCalendarTracker.ViewModels
             }
         }
 
+        public class CalendarDay
+        {
+            public int Day { get; set; }
+            public bool IsSelectable { get; set; }
+            public Color MoodColor { get; set; } = Color.White; // Default color for dates without a mood
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
         public string CurrentMonthAndYear => $"{DateTimeFormatInfo.CurrentInfo.GetMonthName(CurrentDate.Month)} {CurrentDate.Year}";
+
+        // Establish the collection of Calendar Days
         public ObservableCollection<CalendarDay> CalendarDays { get; set; } = new ObservableCollection<CalendarDay>();
 
+        /// <summary>
+        /// START OF FUNCTIONS
+        /// </summary>
         public CalendarViewModel()
         {
             // Set the initial current date to the current month and year
@@ -54,6 +69,7 @@ namespace MoodCalendarTracker.ViewModels
             }
         }
 
+        // Creates the Calendar
         private void InitializeCalendar(int year, int month)
         {
             // Check if going past December
@@ -112,18 +128,10 @@ namespace MoodCalendarTracker.ViewModels
             OnPropertyChanged(nameof(CalendarDays));
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        // Functionality of when the collection of the Calendar Days changes
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public class CalendarDay
-        {
-            public int Day { get; set; }
-            public bool IsSelectable { get; set; }
-            public Color MoodColor { get; set; } = Color.White; // Default color for dates without a mood
         }
 
         // This will force the calendar to re-render whenever the CalendarPage appears, thus updating the mood colors for each date.

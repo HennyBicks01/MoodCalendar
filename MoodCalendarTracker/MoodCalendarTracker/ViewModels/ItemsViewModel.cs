@@ -10,8 +10,10 @@ using static MoodCalendarTracker.ViewModels.CalendarViewModel;
 
 namespace MoodCalendarTracker.ViewModels
 {
+    // Functionality of the Mood History page
     public class ItemsViewModel : BaseViewModel
     {
+        // VARIABLES //
         private DateTime currentDate;
         public ICommand AddNewMood { get; }
 
@@ -188,9 +190,11 @@ namespace MoodCalendarTracker.ViewModels
             // Get the counts for the past month and year
             CalculateMoodCounts();
 
+            // instantiates the command for adding a new mood at the top of the page; connects the function to the command
             AddNewMood = new Command(AddTodaysMood);
         }
 
+        // the function that runs on the command AddNewMood
         public async void AddTodaysMood()
         {
             // get today's date
@@ -236,6 +240,7 @@ namespace MoodCalendarTracker.ViewModels
 
             foreach (var dateStatus in GlobalVariables.DateStatus)
             {
+                // if the dates were more than or equal too of all time
                 if (dateStatus.Key >= allAgo)
                 {
                     switch (dateStatus.Value.Item1)
@@ -251,7 +256,7 @@ namespace MoodCalendarTracker.ViewModels
                             break;
                     }
                 }
-
+                // if the dates were more than or equal to a month ago
                 if (dateStatus.Key >= monthAgo)
                 {
                     switch (dateStatus.Value.Item1)
@@ -267,7 +272,7 @@ namespace MoodCalendarTracker.ViewModels
                             break;
                     }
                 }
-
+                // if the dates were greater than or equal to a year ago
                 if (dateStatus.Key >= yearAgo)
                 {
                     switch (dateStatus.Value.Item1)

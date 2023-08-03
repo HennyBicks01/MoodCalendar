@@ -1,5 +1,4 @@
 ﻿using MoodCalendarTracker.Models;
-using MoodCalendarTracker.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,22 +7,15 @@ using Xamarin.Forms;
 
 namespace MoodCalendarTracker.ViewModels
 {
+    // The base model that all view models inherit from
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-
+        // Getting/Setting the isBusy variable
         bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
-        }
-
-        string title = string.Empty;
-        public string Title
-        {
-            get { return title; }
-            set { SetProperty(ref title, value); }
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
