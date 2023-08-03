@@ -23,6 +23,11 @@ namespace MoodCalendarTracker.Views
             BindingContext = viewModel;
         }
 
+        Frame dayFrame = new Frame
+        {
+            BackgroundColor = GlobalVariables.GetMoodColor(date),
+        };
+
         private void BackButton_Clicked(object sender, EventArgs e)
         {
             // Go back one month

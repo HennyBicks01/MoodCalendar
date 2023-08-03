@@ -18,5 +18,28 @@ namespace MoodCalendarTracker
             // Save the mood and description for the date
             DateStatus[dateStatus.Item3] = new Tuple<string, string>(dateStatus.Item1, dateStatus.Item2);
         }
+
+        public static Color GetMoodColor(DateTime date)
+        {
+            Tuple<string, string> dateStatus;
+            if (DateStatus.TryGetValue(date, out dateStatus))
+            {
+                switch (dateStatus.Item1) // Mood is the first item in the tuple
+                {
+                    case "Good":
+                        return Color.Green;
+                    case "Neutral":
+                        return Color.Yellow;
+                    case "Bad":
+                        return Color.Red;
+                    default:
+                        return Color.White; // Default color
+                }
+            }
+            else
+            {
+                return Color.White; // Default color for dates without a mood
+            }
+        }
     }
 }
