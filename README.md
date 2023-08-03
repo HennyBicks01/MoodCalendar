@@ -21,11 +21,11 @@ The entire application logic is written in C#, which is a widely-used, modern, a
 
 #### Model-View-ViewModel (MVVM) design pattern: 
 
-This pattern helps to cleanly separate the business and presentation logic of an application from its UI, and makes it easier to unit test.
+This pattern helps to cleanly separate the business and presentation logic of an application from its UI and makes it easier to unit test.
 
 #### Data persistence: 
 
-Techniques for persisting data across sessions are used. In this application, Xamarin.Essentials Preferences is used for data storage.
+Techniques for persisting data across sessions are used. In this application, Xamarin.Essentials Preferences and a Global variable are used for data storage.
 
 #### Color manipulation: 
 
@@ -35,17 +35,16 @@ Skills in color manipulation are required to create the mood color gradients in 
 
 This API is used to manipulate dates and times, calculate durations, and format dates for display.
 
-#### Observable Collections: 
-
-These are used to store, retrieve, and update the data that the application uses to generate the UI.
-
 ## Project Contributions
 <!-- Describe each team member's contributions to the project -->
+**Ben Hicks** - I worked on most of the backend of this project. so most of the button's functionality was implemented by me. Additionally, all of the mood data is set to a global variable and we used Xamarin.Essentials preferences to make it persist across sessions on each individual device
+
+**Summer Gasaway** - I worked on most of the front-end design work, so how all the pages look and how all the buttons look were designed by me. Additionally, how each page links up to other pages throughout the application was all designed by me
 
 ## Rubric
 
 *Project Submission - 160 points*
-- [ ] Complete project/solution submission - 160 points
+- [x] Complete project/solution submission - 160 points
 
 
 *Documentation - 40 points*
