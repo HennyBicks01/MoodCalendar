@@ -78,9 +78,18 @@ namespace MoodCalendarTracker.ViewModels
 
         private async void OnSave()
         {
-            GlobalVariables.DateStatus[new DateTime(localSelectedYear, localSelectedMonth, localSelectedDay)] = new Tuple<string, string>(SelectedMood.ToString(), Description);
+            // Prepare the data to be saved
+            Tuple<string, string, DateTime> dateStatus = new Tuple<string, string, DateTime>(
+                SelectedMood.ToString(),
+                Description,
+                new DateTime(localSelectedYear, localSelectedMonth, localSelectedDay)
+            );
+
+            // Save the data
+            GlobalVariables.SaveDateStatus(dateStatus);
 
             await Shell.Current.GoToAsync("..");
         }
+
     }
 }
