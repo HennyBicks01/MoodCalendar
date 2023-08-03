@@ -15,6 +15,8 @@ namespace MoodCalendarTracker.ViewModels
         private int localSelectedDay;
         private int localSelectedMonth;
         private int localSelectedYear;
+        private GlobalVariables _globalVariables; // Access to global variables
+
 
         public enum _Mood { Bad, Neutral, Good };
         private _Mood selectedMood;
@@ -68,16 +70,14 @@ namespace MoodCalendarTracker.ViewModels
         private async void OnSave()
         {
             Console.WriteLine($"Selected Mood: {SelectedMood}");
-            //Item newItem = new Item()
-            //{
-            //    Id = Guid.NewGuid().ToString(),
-            //    Description = Description
-            //};
 
-            //await DataStore.AddItemAsync(newItem);
+            // Save to global variables
+            _globalVariables.Mood = SelectedMood;
+            _globalVariables.Description = Description;
+            _globalVariables.Date = new DateTime(localSelectedYear, localSelectedMonth, localSelectedDay);
 
-            //// This will pop the current page off the navigation stack
-            //await Shell.Current.GoToAsync("..");
+            // This will pop the current page off the navigation stack
+            await Shell.Current.GoToAsync("..");
         }
     }
 }
