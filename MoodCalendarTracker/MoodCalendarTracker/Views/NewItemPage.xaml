@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoodCalendarTracker.Views.NewItemPage"
+             Shell.PresentationMode="ModalAnimated"
+             Title="New Mood"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true">
+
+    <!-- Don't need to specify binding here like with the CalendarView because it's specified in the code behind-->
+    
+    <ContentPage.Content>
+        <StackLayout Spacing="5" Padding="15">
+            <!-- Display the selected date at the top -->
+            <Label x:Name="SelectedDateLabel"
+                   FontSize="30"
+                   FontAttributes="Bold"
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="DarkSlateGray" 
+                   Text="{Binding SelectedDateMMDDYYYY}"/>
+            <Label Text="What Was Your Average Mood For Today?" FontSize="Medium"/>
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Bad" HorizontalOptions="FillAndExpand" BackgroundColor="IndianRed" Clicked="OnMoodButtonClicked" Command="{Binding BadCommand}"></Button>
+                <Button Text="Neutral" HorizontalOptions="FillAndExpand" BackgroundColor="DarkOrange" Clicked="OnMoodButtonClicked" Command="{Binding NeutralCommand}"></Button>
+                <Button Text="Good" HorizontalOptions="FillAndExpand" BackgroundColor="DarkSeaGreen" Clicked="OnMoodButtonClicked" Command="{Binding GoodCommand}"></Button>
+            </StackLayout>
+            <Label Text="How Was Your Day Today? What Did You Do Today?" FontSize="Medium" />
+            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+            </StackLayout>
+            <ListView x:Name="PastEntriesListView"
+            ItemsSource="{Binding PastEntries}"
+            IsVisible="{Binding HasPastEntries}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding .}" TextColor="Gray"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>

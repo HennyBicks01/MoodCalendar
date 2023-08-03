@@ -1,0 +1,85 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoodCalendarTracker.Views.ItemsPage"
+             Title="Past Moods">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddNewMood}" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Spacing="20" Padding="15">
+
+        <Label Text="Past Month:" FontSize="Medium" />
+        <Label Text="{Binding GoodCountMonth}" FontAttributes="Bold" TextColor="DarkSeaGreen" />
+        <Label Text="{Binding NeutralCountMonth}" FontAttributes="Bold" TextColor="DarkOrange" />
+        <Label Text="{Binding BadCountMonth}" FontAttributes="Bold" TextColor="IndianRed" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="AverageMoodSliderMonth"
+            Grid.ColumnSpan="3"
+            Maximum="1"
+            Minimum="-1"
+            Value="{Binding AverageMoodMonth}"
+            IsEnabled="false"/>
+
+            <Label Text="Bad" Grid.Column="0" HorizontalOptions="Start"/>
+            <Label Text="------------------0------------------" Grid.Column="1" HorizontalOptions="Center" TextColor="LightGray"/>
+            <Label Text="Good" Grid.Column="2" HorizontalOptions="End"/>
+        </Grid>
+
+        <Label Text="Past Year:" FontSize="Medium" />
+        <Label Text="{Binding GoodCountYear}" FontAttributes="Bold" TextColor="DarkSeaGreen" />
+        <Label Text="{Binding NeutralCountYear}" FontAttributes="Bold" TextColor="DarkOrange" />
+        <Label Text="{Binding BadCountYear}" FontAttributes="Bold" TextColor="IndianRed" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="AverageMoodSliderYear"
+            Grid.ColumnSpan="3"
+            Maximum="1"
+            Minimum="-1"
+            Value="{Binding AverageMoodYear}"
+            IsEnabled="false"/>
+
+            <Label Text="Bad" Grid.Column="0" HorizontalOptions="Start"/>
+            <Label Text="------------------0------------------" Grid.Column="1" HorizontalOptions="Center" TextColor="LightGray"/>
+            <Label Text="Good" Grid.Column="2" HorizontalOptions="End"/>
+        </Grid>
+
+        <Label Text="All Time:" FontSize="Medium" />
+        <Label Text="{Binding GoodCountAll}" FontAttributes="Bold" TextColor="DarkSeaGreen" />
+        <Label Text="{Binding NeutralCountAll}" FontAttributes="Bold" TextColor="DarkOrange" />
+        <Label Text="{Binding BadCountAll}" FontAttributes="Bold" TextColor="IndianRed" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="AverageMoodSliderAll"
+            Grid.ColumnSpan="3"
+            Maximum="1"
+            Minimum="-1"
+            Value="{Binding AverageMoodAll}"
+            IsEnabled="false"/>
+
+            <Label Text="Bad" Grid.Column="0" HorizontalOptions="Start"/>
+            <Label Text="------------------0------------------" Grid.Column="1" HorizontalOptions="Center" TextColor="LightGray"/>
+            <Label Text="Good" Grid.Column="2" HorizontalOptions="End"/>
+        </Grid>
+
+    </StackLayout>
+
+</ContentPage>

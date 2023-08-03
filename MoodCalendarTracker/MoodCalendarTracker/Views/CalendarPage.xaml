@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MoodCalendarTracker.Views.CalendarPage"
+             xmlns:vm="clr-namespace:MoodCalendarTracker.ViewModels"
+             Title="My Moods">
+    
+    <ContentPage.BindingContext>
+        <vm:CalendarViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Define colors and fonts -->
+            <Color x:Key="PrimaryColor">#3498DB</Color>
+            <Color x:Key="LightTextColor">#BDC3C7</Color>
+            <Color x:Key="DarkTextColor">#34495E</Color>
+            <Style x:Key="CalendarDayLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DarkTextColor}" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <!-- Navigation buttons -->
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Back" Clicked="BackButton_Clicked" />
+                <Label Text="{Binding CurrentMonthAndYear}"
+               FontSize="20"
+               FontAttributes="Bold"
+               HorizontalOptions="CenterAndExpand"
+               VerticalOptions="CenterAndExpand"
+               TextColor="{StaticResource DarkTextColor}" />
+                <Button Text="Forward" Clicked="ForwardButton_Clicked" />
+            </StackLayout>
+
+            <!-- Days of the Week -->
+            <Grid BackgroundColor="{StaticResource PrimaryColor}" RowSpacing="0" ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Text="Sun" Grid.Row="0" Grid.Column="0" HorizontalTextAlignment="Center" TextColor="White" />
+                <Label Text="Mon" Grid.Row="0" Grid.Column="1" HorizontalTextAlignment="Center" TextColor="White" />
+                <Label Text="Tue" Grid.Row="0" Grid.Column="2" HorizontalTextAlignment="Center" TextColor="White" />
+                <Label Text="Wed" Grid.Row="0" Grid.Column="3" HorizontalTextAlignment="Center" TextColor="White" />
+                <Label Text="Thu" Grid.Row="0" Grid.Column="4" HorizontalTextAlignment="Center" TextColor="White" />
+                <Label Text="Fri" Grid.Row="0" Grid.Column="5" HorizontalTextAlignment="Center" TextColor="White" />
+                <Label Text="Sat" Grid.Row="0" Grid.Column="6" HorizontalTextAlignment="Center" TextColor="White" />
+            </Grid>
+
+            <!-- Calendar Days -->
+            <CollectionView x:Name="calendarCollectionView"
+                            ItemsSource="{Binding CalendarDays}"
+                            SelectionMode="Single">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="7"
+                                     VerticalItemSpacing="5"
+                                     HorizontalItemSpacing="5" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Use Frame to add a square around each day number -->
+                        <Frame BackgroundColor="{Binding MoodColor}"
+                               BorderColor="{StaticResource PrimaryColor}"
+                               CornerRadius="5"
+                               Padding="10"
+                               HasShadow="False"
+                               Margin="5">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:CalendarViewModel}}, Path=DateSelectedCommand}"
+                                          CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="{Binding Day}"
+                                   Style="{StaticResource CalendarDayLabelStyle}" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
