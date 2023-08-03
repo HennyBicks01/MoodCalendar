@@ -14,6 +14,10 @@ namespace MoodCalendarTracker.Views
         private NewItemViewModel viewModel;
         public Item Item { get; set; }
 
+        Color pastelRed = Color.FromHex("#FF6961");
+        Color pastelOrange = Color.FromHex("#FDFD96");
+        Color pastelGreen = Color.FromHex("#98FB98");
+
         public NewItemPage(int selectedDay, int selectedMonth, int selectedYear)
         {
             InitializeComponent();
@@ -21,14 +25,24 @@ namespace MoodCalendarTracker.Views
             BindingContext = viewModel;
         }
 
-        public static Color DarkenColor(Color color)
-        {
-            return color.MultiplyAlpha(0.7);
-        }
-
 
         private void OnMoodButtonClicked(object sender, EventArgs e)
         {
+            if (sender is Button clickedButton)
+            {
+                switch (clickedButton.Text)
+                {
+                    case "Bad":
+                        this.BackgroundColor = pastelRed;
+                        break;
+                    case "Neutral":
+                        this.BackgroundColor = pastelOrange;
+                        break;
+                    case "Good":
+                        this.BackgroundColor = pastelGreen;
+                        break;
+                }
+            }
             // When a mood button is clicked, update the selected mood in the ViewModel
             Button button = (Button)sender;
             if (Enum.TryParse(button.Text, out _Mood selectedMood))
