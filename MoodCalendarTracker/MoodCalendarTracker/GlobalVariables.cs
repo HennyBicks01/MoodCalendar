@@ -49,14 +49,18 @@ namespace MoodCalendarTracker
         // Command to save the mood, description, and date
         public static ICommand SaveCommand => new Command<Tuple<string, string, DateTime>>(SaveDateStatus);
 
-        private static void SaveDateStatus(Tuple<string, string, DateTime> dateStatus)
+        public static void SaveDateStatus(Tuple<string, string, DateTime> dateStatus)
         {
             // Save the mood and description for the date
             DateStatus[dateStatus.Item3] = new Tuple<string, string>(dateStatus.Item1, dateStatus.Item2);
 
-            // Store the updated DateStatus data across sessions
-            DateStatus = DateStatus;
+            // Serialize the data
+            var dateStatusJson = JsonConvert.SerializeObject(DateStatus);
+
+            // Store the serialized data
+            Preferences.Set("DateStatus", dateStatusJson);
         }
+
 
         public static Color GetMoodColor(DateTime date)
         {
