@@ -3,7 +3,7 @@
              x:Class="MoodCalendarTracker.Views.ItemsPage"
              Title="Past Moods">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddNewMood}" />
+        <ToolbarItem Text="New Entry" Command="{Binding AddNewMood}" />
     </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="20" Padding="15">

@@ -60,6 +60,11 @@ namespace MoodCalendarTracker
 
         public static Color GetMoodColor(DateTime date)
         {
+            // If the date is in the future, return gray
+            if (date.Date > DateTime.Now.Date)
+            {
+                return Color.FromHex("#D3D3D3"); // Gray color
+            }
             Tuple<string, string> dateStatus;
             if (DateStatus.TryGetValue(date, out dateStatus))
             {
