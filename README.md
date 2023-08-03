@@ -34,7 +34,7 @@ This pattern helps to cleanly separate the business and presentation logic of an
 
 Techniques for persisting data across sessions are used. In this application, Xamarin.Essentials Preferences and a Global variable are used for data storage.
 
-*first method stores the data for the mood and date ⬇️*
+*This code uses Xamarin.Essentials Preferences to retrieve a JSON string representing a dictionary of date statuses from the application's persistent storage, and deserializes it back into a Dictionary<DateTime, Tuple<string, string>>; if no data exists, it initializes a new dictionary. ⬇️*
 
 ![Rubric03](photos/Rubric03.png)
 
