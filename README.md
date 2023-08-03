@@ -17,26 +17,53 @@ This is a cross-platform UI toolkit that allows developers to efficiently create
 #### C# programming language: 
 
 The entire application logic is written in C#, which is a widely-used, modern, and type-safe programming language.
+![Rubric01](photos/Rubric01.png)
 
 #### Model-View-ViewModel (MVVM) design pattern: 
 
 This pattern helps to cleanly separate the business and presentation logic of an application from its UI and makes it easier to unit test.
+![Rubric02](photos/Rubric02.png)
 
 #### Data persistence / Xamarin.Essentials: 
 
 Techniques for persisting data across sessions are used. In this application, Xamarin.Essentials Preferences and a Global variable are used for data storage.
 
+![Rubric03](photos/Rubric03.png)
+
+![Rubric04](photos/Rubric04.png)
+
 #### Color manipulation: 
 
 Skills in color manipulation are required to create the mood color gradients in the calendar.
 
+![Rubric05](photos/Rubric05.png)
+
+
+![Rubric06](photos/Rubric06.png)
+
+
+![Rubric07](photos/Rubric07.png)
+
+
+![Rubric08](photos/Rubric08.png)
+
+
+![Rubric09](photos/Rubric09.png)
+
+
+![Rubric10](photos/Rubric10.png)
+
 #### DateTime API: 
 
 This API is used to manipulate dates and times, calculate durations, and format dates for display.
+![Rubric13](photos/Rubric13.png)
 
 #### Newtonsoft.Json
 
 We used this Nuget package to deserialize json information in our global variable class
+
+![Rubric11](photos/Rubric11.png)
+![Rubric12](photos/Rubric12.png)
 
 ## Project Contributions
 <!-- Describe each team member's contributions to the project -->
