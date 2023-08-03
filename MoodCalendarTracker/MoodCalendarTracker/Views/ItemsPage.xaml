@@ -10,10 +10,23 @@
         <Label Text="{Binding NeutralCountMonth}" FontAttributes="Bold" TextColor="Orange" />
         <Label Text="{Binding BadCountMonth}" FontAttributes="Bold" TextColor="Red" />
 
+        <Slider x:Name="AverageMoodSlider"
+                Maximum="1"
+                Minimum="-1"
+                Value="{Binding AverageMoodMonth}"
+                IsEnabled="false"/>
+
         <Label Text="Past Year:" FontSize="Medium" />
         <Label Text="{Binding GoodCountYear}" FontAttributes="Bold" TextColor="Green" />
         <Label Text="{Binding NeutralCountYear}" FontAttributes="Bold" TextColor="Orange" />
         <Label Text="{Binding BadCountYear}" FontAttributes="Bold" TextColor="Red" />
+
+        <Slider x:Name="AverageMoodYearSlider"
+                Maximum="1"
+                Minimum="-1"
+                Value="{Binding AverageMoodYear}"
+                IsEnabled="false"/>
+
     </StackLayout>
 
 </ContentPage>

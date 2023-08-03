@@ -10,8 +10,6 @@ namespace MoodCalendarTracker.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
-        // Existing code...
-
         public int GoodCountMonth { get; private set; }
         public int NeutralCountMonth { get; private set; }
         public int BadCountMonth { get; private set; }
@@ -20,10 +18,8 @@ namespace MoodCalendarTracker.ViewModels
         public int NeutralCountYear { get; private set; }
         public int BadCountYear { get; private set; }
 
-        public ItemsViewModel() // Existing parameters...
+        public ItemsViewModel()
         {
-            // Existing code...
-
             // Get the counts for the past month and year
             CalculateMoodCounts();
         }
@@ -72,6 +68,22 @@ namespace MoodCalendarTracker.ViewModels
                             break;
                     }
                 }
+            }
+        }
+        private void CalculateAverageMoods()
+        {
+            // Calculate the average mood for the past month
+            int totalMoodsMonth = GoodCountMonth + NeutralCountMonth + BadCountMonth;
+            if (totalMoodsMonth > 0)
+            {
+                AverageMoodMonth = (GoodCountMonth - BadCountMonth) / (double)totalMoodsMonth;
+            }
+
+            // Calculate the average mood for the past year
+            int totalMoodsYear = GoodCountYear + NeutralCountYear + BadCountYear;
+            if (totalMoodsYear > 0)
+            {
+                AverageMoodYear = (GoodCountYear - BadCountYear) / (double)totalMoodsYear;
             }
         }
     }
