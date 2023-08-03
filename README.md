@@ -1,11 +1,11 @@
 # MoodCalendar
 <!-- replace 'Project Title' with the title of your project -->
 
+
 ## Team Members
 <!-- list the names of your team members here -->
-
-## Introduction
-<!-- Provide an introduction to your project here. Describe the problem you are addressing and how you are addressing it. Identify the audience or users of this application. -->
+Ben Hicks
+Summer Gasaway
 
 ## Required Skills
 <!-- List the technical skills you needed to develop the application, the tools, or APIs (Platform specific and third party) used in the project -->
