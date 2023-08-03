@@ -38,6 +38,14 @@ namespace MoodCalendarTracker.ViewModels
             GoodCountMonth = NeutralCountMonth = BadCountMonth = 0;
             GoodCountYear = NeutralCountYear = BadCountYear = 0;
 
+            // Trigger the PropertyChanged event for the mood count properties
+            OnPropertyChanged(nameof(GoodCountMonth));
+            OnPropertyChanged(nameof(NeutralCountMonth));
+            OnPropertyChanged(nameof(BadCountMonth));
+            OnPropertyChanged(nameof(GoodCountYear));
+            OnPropertyChanged(nameof(NeutralCountYear));
+            OnPropertyChanged(nameof(BadCountYear));
+
             foreach (var dateStatus in GlobalVariables.DateStatus)
             {
                 if (dateStatus.Key >= monthAgo)
@@ -88,6 +96,10 @@ namespace MoodCalendarTracker.ViewModels
             {
                 AverageMoodYear = (GoodCountYear - BadCountYear) / (double)totalMoodsYear;
             }
+
+            // Trigger the PropertyChanged event for the average mood properties
+            OnPropertyChanged(nameof(AverageMoodMonth));
+            OnPropertyChanged(nameof(AverageMoodYear));
         }
     }
 }
