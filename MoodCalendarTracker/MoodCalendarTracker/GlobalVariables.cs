@@ -2,13 +2,49 @@
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Essentials;
+using Newtonsoft.Json;  // Make sure to install the Newtonsoft.Json NuGet package
 
 namespace MoodCalendarTracker
 {
     public static class GlobalVariables
     {
         // Store both the mood and description for each date
-        public static Dictionary<DateTime, Tuple<string, string>> DateStatus { get; set; } = new Dictionary<DateTime, Tuple<string, string>>();
+        private static Dictionary<DateTime, Tuple<string, string>> dateStatus;
+        public static Dictionary<DateTime, Tuple<string, string>> DateStatus
+        {
+            get
+            {
+                if (dateStatus == null)
+                {
+                    // Retrieve the stored data
+                    var dateStatusJson = Preferences.Get("DateStatus", string.Empty);
+                    if (string.IsNullOrEmpty(dateStatusJson))
+                    {
+                        // If no data is stored, initialize a new dictionary
+                        dateStatus = new Dictionary<DateTime, Tuple<string, string>>();
+                    }
+                    else
+                    {
+                        // Otherwise, deserialize the stored data
+                        dateStatus = JsonConvert.DeserializeObject<Dictionary<DateTime, Tuple<string, string>>>(dateStatusJson);
+                    }
+                }
+
+                return dateStatus;
+            }
+
+            set
+            {
+                dateStatus = value;
+
+                // Serialize the data
+                var dateStatusJson = JsonConvert.SerializeObject(dateStatus);
+
+                // Store the serialized data
+                Preferences.Set("DateStatus", dateStatusJson);
+            }
+        }
 
         // Command to save the mood, description, and date
         public static ICommand SaveCommand => new Command<Tuple<string, string, DateTime>>(SaveDateStatus);
@@ -17,6 +53,9 @@ namespace MoodCalendarTracker
         {
             // Save the mood and description for the date
             DateStatus[dateStatus.Item3] = new Tuple<string, string>(dateStatus.Item1, dateStatus.Item2);
+
+            // Store the updated DateStatus data across sessions
+            DateStatus = DateStatus;
         }
 
         public static Color GetMoodColor(DateTime date)
@@ -47,6 +86,5 @@ namespace MoodCalendarTracker
                 return Color.White; // Default color for dates without a mood
             }
         }
-
     }
 }
