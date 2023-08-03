@@ -1,14 +1,17 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoodCalendarTracker.Views.ItemsPage"
-             Title="{Binding Title}">
+             Title="Past Moods">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddNewMood}" />
+    </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="20" Padding="15">
 
         <Label Text="Past Month:" FontSize="Medium" />
-        <Label Text="{Binding GoodCountMonth}" FontAttributes="Bold" TextColor="Green" />
-        <Label Text="{Binding NeutralCountMonth}" FontAttributes="Bold" TextColor="Orange" />
-        <Label Text="{Binding BadCountMonth}" FontAttributes="Bold" TextColor="Red" />
+        <Label Text="{Binding GoodCountMonth}" FontAttributes="Bold" TextColor="DarkSeaGreen" />
+        <Label Text="{Binding NeutralCountMonth}" FontAttributes="Bold" TextColor="DarkOrange" />
+        <Label Text="{Binding BadCountMonth}" FontAttributes="Bold" TextColor="IndianRed" />
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -30,9 +33,9 @@
         </Grid>
 
         <Label Text="Past Year:" FontSize="Medium" />
-        <Label Text="{Binding GoodCountYear}" FontAttributes="Bold" TextColor="Green" />
-        <Label Text="{Binding NeutralCountYear}" FontAttributes="Bold" TextColor="Orange" />
-        <Label Text="{Binding BadCountYear}" FontAttributes="Bold" TextColor="Red" />
+        <Label Text="{Binding GoodCountYear}" FontAttributes="Bold" TextColor="DarkSeaGreen" />
+        <Label Text="{Binding NeutralCountYear}" FontAttributes="Bold" TextColor="DarkOrange" />
+        <Label Text="{Binding BadCountYear}" FontAttributes="Bold" TextColor="IndianRed" />
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -54,9 +57,9 @@
         </Grid>
 
         <Label Text="All Time:" FontSize="Medium" />
-        <Label Text="{Binding GoodCountAll}" FontAttributes="Bold" TextColor="Green" />
-        <Label Text="{Binding NeutralCountAll}" FontAttributes="Bold" TextColor="Orange" />
-        <Label Text="{Binding BadCountAll}" FontAttributes="Bold" TextColor="Red" />
+        <Label Text="{Binding GoodCountAll}" FontAttributes="Bold" TextColor="DarkSeaGreen" />
+        <Label Text="{Binding NeutralCountAll}" FontAttributes="Bold" TextColor="DarkOrange" />
+        <Label Text="{Binding BadCountAll}" FontAttributes="Bold" TextColor="IndianRed" />
 
         <Grid>
             <Grid.ColumnDefinitions>

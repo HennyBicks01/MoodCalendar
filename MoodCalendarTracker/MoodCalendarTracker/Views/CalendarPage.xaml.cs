@@ -2,10 +2,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using static MoodCalendarTracker.ViewModels.CalendarViewModel;
 
 namespace MoodCalendarTracker.Views
 {

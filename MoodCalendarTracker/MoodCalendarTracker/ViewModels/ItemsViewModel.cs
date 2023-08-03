@@ -4,12 +4,17 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
+using static MoodCalendarTracker.ViewModels.CalendarViewModel;
 
 namespace MoodCalendarTracker.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
+        private DateTime currentDate;
+        public ICommand AddNewMood { get; }
+
         private int goodCountAll;
         public int GoodCountAll
         {
@@ -182,6 +187,16 @@ namespace MoodCalendarTracker.ViewModels
         {
             // Get the counts for the past month and year
             CalculateMoodCounts();
+
+            AddNewMood = new Command(AddTodaysMood);
+        }
+
+        public async void AddTodaysMood()
+        {
+            // get today's date
+            currentDate = DateTime.Now;
+            // Navigate to the specific view page based on the selected date
+            await Application.Current.MainPage.Navigation.PushAsync(new NewItemPage(currentDate.Day, currentDate.Month, currentDate.Year));
         }
 
         public void CalculateMoodCounts()
@@ -303,5 +318,6 @@ namespace MoodCalendarTracker.ViewModels
             AverageMoodMonth = averageMoodMonth;
             AverageMoodYear = averageMoodYear;
         }
+
     }
 }

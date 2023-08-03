@@ -96,7 +96,8 @@ namespace MoodCalendarTracker.ViewModels
                 // Check if the date is in the future
                 bool isSelectable = DateTime.Now.Date >= date;
 
-                CalendarDays.Add(new CalendarDay { Day = i, IsSelectable = isSelectable, MoodColor = GlobalVariables.GetMoodColor(date) });
+                CalendarDays.Add(new CalendarDay { Day = i, IsSelectable = isSelectable, MoodColor = GlobalVariables.GetMoodColor(date)});
+
             }
 
             // Add the next month days to the calendar

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoodCalendarTracker.Views.CalendarPage"
-             xmlns:vm="clr-namespace:MoodCalendarTracker.ViewModels">
+             xmlns:vm="clr-namespace:MoodCalendarTracker.ViewModels"
+             Title="My Moods">
     
     <ContentPage.BindingContext>
         <vm:CalendarViewModel />
