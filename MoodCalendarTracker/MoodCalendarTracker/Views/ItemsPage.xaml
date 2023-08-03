@@ -10,33 +10,72 @@
         <Label Text="{Binding NeutralCountMonth}" FontAttributes="Bold" TextColor="Orange" />
         <Label Text="{Binding BadCountMonth}" FontAttributes="Bold" TextColor="Red" />
 
-        <Slider x:Name="AverageMoodSlider"
-                Maximum="1"
-                Minimum="-1"
-                Value="{Binding AverageMoodMonth}"
-                IsEnabled="false"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="AverageMoodSliderMonth"
+            Grid.ColumnSpan="3"
+            Maximum="1"
+            Minimum="-1"
+            Value="{Binding AverageMoodMonth}"
+            IsEnabled="false"/>
+
+            <Label Text="Bad" Grid.Column="0" HorizontalOptions="Start"/>
+            <Label Text="------------------0------------------" Grid.Column="1" HorizontalOptions="Center" TextColor="LightGray"/>
+            <Label Text="Good" Grid.Column="2" HorizontalOptions="End"/>
+        </Grid>
 
         <Label Text="Past Year:" FontSize="Medium" />
         <Label Text="{Binding GoodCountYear}" FontAttributes="Bold" TextColor="Green" />
         <Label Text="{Binding NeutralCountYear}" FontAttributes="Bold" TextColor="Orange" />
         <Label Text="{Binding BadCountYear}" FontAttributes="Bold" TextColor="Red" />
 
-        <Slider x:Name="AverageMoodYearSlider"
-                Maximum="1"
-                Minimum="-1"
-                Value="{Binding AverageMoodYear}"
-                IsEnabled="false"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="AverageMoodSliderYear"
+            Grid.ColumnSpan="3"
+            Maximum="1"
+            Minimum="-1"
+            Value="{Binding AverageMoodYear}"
+            IsEnabled="false"/>
+
+            <Label Text="Bad" Grid.Column="0" HorizontalOptions="Start"/>
+            <Label Text="------------------0------------------" Grid.Column="1" HorizontalOptions="Center" TextColor="LightGray"/>
+            <Label Text="Good" Grid.Column="2" HorizontalOptions="End"/>
+        </Grid>
 
         <Label Text="All Time:" FontSize="Medium" />
         <Label Text="{Binding GoodCountAll}" FontAttributes="Bold" TextColor="Green" />
         <Label Text="{Binding NeutralCountAll}" FontAttributes="Bold" TextColor="Orange" />
         <Label Text="{Binding BadCountAll}" FontAttributes="Bold" TextColor="Red" />
 
-        <Slider x:Name="AverageMoodAllSlider"
-                Maximum="1"
-                Minimum="-1"
-                Value="{Binding AverageMoodAll}"
-                IsEnabled="false"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Slider x:Name="AverageMoodSliderAll"
+            Grid.ColumnSpan="3"
+            Maximum="1"
+            Minimum="-1"
+            Value="{Binding AverageMoodAll}"
+            IsEnabled="false"/>
+
+            <Label Text="Bad" Grid.Column="0" HorizontalOptions="Start"/>
+            <Label Text="------------------0------------------" Grid.Column="1" HorizontalOptions="Center" TextColor="LightGray"/>
+            <Label Text="Good" Grid.Column="2" HorizontalOptions="End"/>
+        </Grid>
 
     </StackLayout>
 
