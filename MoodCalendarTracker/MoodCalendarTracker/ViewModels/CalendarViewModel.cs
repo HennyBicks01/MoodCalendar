@@ -94,7 +94,8 @@ namespace MoodCalendarTracker.ViewModels
             // Add the current month days to the calendar
             for (int i = 1; i <= lastDayOfMonth.Day; i++)
             {
-                CalendarDays.Add(new CalendarDay { Day = i, IsSelectable = true });
+                DateTime date = new DateTime(year, month, i);
+                CalendarDays.Add(new CalendarDay { Day = i, IsSelectable = true, MoodColor = GlobalVariables.GetMoodColor(date) });
             }
 
             // Add the next month days to the calendar
