@@ -6,7 +6,6 @@ using System.Globalization;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using static MoodCalendarTracker.Views.CalendarPage;
 
 namespace MoodCalendarTracker.ViewModels
 {
@@ -57,8 +56,6 @@ namespace MoodCalendarTracker.ViewModels
 
         private void InitializeCalendar(int year, int month)
         {
-            // BENTODO: contact DB for dates that already have moods; change the color of the squares based on this; access through DateTime?
-
             // Check if going past December
             if (month > 12)
             {
@@ -88,18 +85,18 @@ namespace MoodCalendarTracker.ViewModels
             // Add the previous month days to the calendar
             for (int i = firstDayOfMonth.DayOfWeek == DayOfWeek.Sunday ? 6 : (int)firstDayOfMonth.DayOfWeek - 1; i >= 0; i--)
             {
-                CalendarDays.Add(new CalendarDay { Day = daysInPreviousMonth - i, IsSelectable = false });
+                CalendarDays.Add(new CalendarDay { Day = daysInPreviousMonth - i, IsSelectable = false, MoodColor = Color.LightGray });
             }
 
             // Add the current month days to the calendar
             for (int i = 1; i <= lastDayOfMonth.Day; i++)
             {
-                DateTime dayDate = new DateTime(year, month, i);
-                CalendarDays.Add(new CalendarDay
-                {
-                    Day = i,
-                    IsSelectable = dayDate <= DateTime.Today // disable future dates
-                });
+                DateTime date = new DateTime(year, month, i);
+
+                // Check if the date is in the future
+                bool isSelectable = DateTime.Now.Date >= date;
+
+                CalendarDays.Add(new CalendarDay { Day = i, IsSelectable = isSelectable, MoodColor = GlobalVariables.GetMoodColor(date) });
             }
 
             // Add the next month days to the calendar
@@ -107,7 +104,7 @@ namespace MoodCalendarTracker.ViewModels
             int remainingDays = 42 - totalDays;
             for (int i = 1; i <= remainingDays; i++)
             {
-                CalendarDays.Add(new CalendarDay { Day = i, IsSelectable = false });
+                CalendarDays.Add(new CalendarDay { Day = i, IsSelectable = false, MoodColor = Color.LightGray });
             }
 
             // Notify that the CalendarDays collection has changed
@@ -126,10 +123,9 @@ namespace MoodCalendarTracker.ViewModels
             public int Day { get; set; }
             public bool IsSelectable { get; set; }
             public Color MoodColor { get; set; } = Color.White; // Default color for dates without a mood
-
         }
 
-        //This will force the calendar to re-render whenever the CalendarPage appears, thus updating the mood colors for each date.
+        // This will force the calendar to re-render whenever the CalendarPage appears, thus updating the mood colors for each date.
         public void RefreshCalendar()
         {
             InitializeCalendar(CurrentDate.Year, CurrentDate.Month);

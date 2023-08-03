@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using static MoodCalendarTracker.ViewModels.CalendarViewModel;
 using static MoodCalendarTracker.ViewModels.NewItemViewModel;
 
 namespace MoodCalendarTracker.Views
@@ -56,5 +57,7 @@ namespace MoodCalendarTracker.Views
             // When the Save button is clicked, execute the SaveMoodCommand in the ViewModel
             viewModel.SaveCommand.Execute(null);
         }
+
+
     }
 }
