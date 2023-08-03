@@ -1,9 +1,7 @@
-﻿using MoodCalendarTracker.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Text;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
 using static MoodCalendarTracker.ViewModels.NewItemViewModel;
@@ -17,12 +15,8 @@ namespace MoodCalendarTracker.ViewModels
         private int localSelectedMonth;
         private int localSelectedYear;
 
-
         public enum _Mood { Bad, Neutral, Good };
         private _Mood selectedMood;
-        public ObservableCollection<string> PastEntries { get; set; } = new ObservableCollection<string>();
-
-        public bool HasPastEntries => PastEntries.Count > 0;
 
         public _Mood SelectedMood
         {
@@ -33,29 +27,41 @@ namespace MoodCalendarTracker.ViewModels
                 OnPropertyChanged();
             }
         }
+
         public string Description
         {
             get => description;
             set => SetProperty(ref description, value);
         }
 
+        public ObservableCollection<string> PastEntries { get; set; } = new ObservableCollection<string>();
+
+        public bool HasPastEntries => PastEntries.Count > 0;
+
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
 
-
         public NewItemViewModel(int selectedDay, int selectedMonth, int selectedYear)
         {
-
-            // connected the local variable here with the variable that was fed into this viewModel
-
             localSelectedDay = selectedDay;
             localSelectedMonth = selectedMonth;
             localSelectedYear = selectedYear;
 
             SaveCommand = new Command(OnSave, ValidateSave);
             CancelCommand = new Command(OnCancel);
+
             this.PropertyChanged +=
                 (_, __) => SaveCommand.ChangeCanExecute();
+
+            // Retrieve the past entries for the current date
+            DateTime currentDate = new DateTime(localSelectedYear, localSelectedMonth, localSelectedDay);
+            if (GlobalVariables.DateStatus.ContainsKey(currentDate))
+            {
+                var pastEntry = GlobalVariables.DateStatus[currentDate];
+                PastEntries.Add($"{pastEntry.Item1}: {pastEntry.Item2}");
+                OnPropertyChanged(nameof(PastEntries));
+                OnPropertyChanged(nameof(HasPastEntries));
+            }
         }
 
         public string SelectedDateMMDDYYYY => $"{DateTimeFormatInfo.CurrentInfo.GetMonthName(localSelectedMonth)} {localSelectedDay} {localSelectedYear}";
@@ -67,22 +73,14 @@ namespace MoodCalendarTracker.ViewModels
 
         private async void OnCancel()
         {
-            // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
 
-        private void OnSave()
+        private async void OnSave()
         {
-            Console.WriteLine($"Selected Mood: {SelectedMood}");
+            GlobalVariables.DateStatus[new DateTime(localSelectedYear, localSelectedMonth, localSelectedDay)] = new Tuple<string, string>(SelectedMood.ToString(), Description);
 
-            // Save to global variables
-            var dateStatus = new Tuple<string, string, DateTime>(SelectedMood.ToString(), Description, new DateTime(localSelectedYear, localSelectedMonth, localSelectedDay));
-            GlobalVariables.SaveCommand.Execute(dateStatus);
-
-            // This will pop the current page off the navigation stack
-            Shell.Current.GoToAsync("..");
+            await Shell.Current.GoToAsync("..");
         }
-
-
     }
 }
