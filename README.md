@@ -22,7 +22,7 @@ The entire application logic is written in C#, which is a widely-used, modern, a
 
 This pattern helps to cleanly separate the business and presentation logic of an application from its UI and makes it easier to unit test.
 
-#### Data persistence: 
+#### Data persistence / Xamarin.Essentials: 
 
 Techniques for persisting data across sessions are used. In this application, Xamarin.Essentials Preferences and a Global variable are used for data storage.
 
@@ -33,6 +33,10 @@ Skills in color manipulation are required to create the mood color gradients in 
 #### DateTime API: 
 
 This API is used to manipulate dates and times, calculate durations, and format dates for display.
+
+#### Newtonsoft.Json
+
+We used this Nuget package to deserialize json information in our global variable class
 
 ## Project Contributions
 <!-- Describe each team member's contributions to the project -->
