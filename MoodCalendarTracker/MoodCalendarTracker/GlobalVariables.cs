@@ -33,18 +33,8 @@ namespace MoodCalendarTracker
 
                 return dateStatus;
             }
-
-            set
-            {
-                dateStatus = value;
-
-                // Serialize the data
-                var dateStatusJson = JsonConvert.SerializeObject(dateStatus);
-
-                // Store the serialized data
-                Preferences.Set("DateStatus", dateStatusJson);
-            }
         }
+
 
         // Command to save the mood, description, and date
         public static ICommand SaveCommand => new Command<Tuple<string, string, DateTime>>(SaveDateStatus);
