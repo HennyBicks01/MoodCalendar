@@ -19,8 +19,12 @@
 Please archive the complete project/solution and submit it. 
 
 ## Rubric
+
+*Project Submission - 160 points*
 - [ ] Complete project/solution submission - 160 points
-- [ ] Documentation - 40 points
+
+
+*Documentation - 40 points*
 - [ ] Project title - 5 points
 - [ ] Team member names - 5 points
 - [ ] Project introduction - 10 points
