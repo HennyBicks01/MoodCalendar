@@ -27,6 +27,17 @@
                 Value="{Binding AverageMoodYear}"
                 IsEnabled="false"/>
 
+        <Label Text="All Time:" FontSize="Medium" />
+        <Label Text="{Binding GoodCountAll}" FontAttributes="Bold" TextColor="Green" />
+        <Label Text="{Binding NeutralCountAll}" FontAttributes="Bold" TextColor="Orange" />
+        <Label Text="{Binding BadCountAll}" FontAttributes="Bold" TextColor="Red" />
+
+        <Slider x:Name="AverageMoodAllSlider"
+                Maximum="1"
+                Minimum="-1"
+                Value="{Binding AverageMoodAll}"
+                IsEnabled="false"/>
+
     </StackLayout>
 
 </ContentPage>
