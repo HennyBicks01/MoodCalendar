@@ -20,9 +20,9 @@
                    Text="{Binding SelectedDateMMDDYYYY}"/>
             <Label Text="What Was Your Average Mood For Today?" FontSize="Medium"/>
             <StackLayout Orientation="Horizontal">
-                <Button Text="Bad" HorizontalOptions="FillAndExpand" BackgroundColor="IndianRed" Clicked="OnMoodButtonClicked"></Button>
-                <Button Text="Neutral" HorizontalOptions="FillAndExpand" BackgroundColor="DarkOrange" Clicked="OnMoodButtonClicked"></Button>
-                <Button Text="Good" HorizontalOptions="FillAndExpand" BackgroundColor="DarkSeaGreen" Clicked="OnMoodButtonClicked"></Button>
+                <Button Text="Bad" HorizontalOptions="FillAndExpand" BackgroundColor="IndianRed" Clicked="OnMoodButtonClicked" Command="{Binding BadCommand}"></Button>
+                <Button Text="Neutral" HorizontalOptions="FillAndExpand" BackgroundColor="DarkOrange" Clicked="OnMoodButtonClicked" Command="{Binding NeutralCommand}"></Button>
+                <Button Text="Good" HorizontalOptions="FillAndExpand" BackgroundColor="DarkSeaGreen" Clicked="OnMoodButtonClicked" Command="{Binding GoodCommand}"></Button>
             </StackLayout>
             <Label Text="How Was Your Day Today? What Did You Do Today?" FontSize="Medium" />
             <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
