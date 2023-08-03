@@ -120,6 +120,8 @@ namespace MoodCalendarTracker.ViewModels
         {
             public int Day { get; set; }
             public bool IsSelectable { get; set; }
+            public Color MoodColor { get; set; } = Color.White; // Default color for dates without a mood
+
         }
-}
+    }
 }
