@@ -27,7 +27,6 @@ namespace MoodCalendarTracker
                 return Color.LightGray;
             }
 
-
             Tuple<string, string> dateStatus;
             if (DateStatus.TryGetValue(date, out dateStatus))
             {

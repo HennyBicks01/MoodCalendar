@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoodCalendarTracker.Views.ItemDetailPage"
              Title="{Binding Title}">
@@ -9,6 +8,16 @@
         <Label Text="{Binding Text}" FontSize="Small"/>
         <Label Text="Description:" FontSize="Medium" />
         <Label Text="{Binding Description}" FontSize="Small"/>
+
+        <Label Text="Past Month:" FontSize="Medium" />
+        <Label Text="{Binding GoodCountMonth}" FontAttributes="Bold" TextColor="Green" />
+        <Label Text="{Binding NeutralCountMonth}" FontAttributes="Bold" TextColor="Orange" />
+        <Label Text="{Binding BadCountMonth}" FontAttributes="Bold" TextColor="Red" />
+
+        <Label Text="Past Year:" FontSize="Medium" />
+        <Label Text="{Binding GoodCountYear}" FontAttributes="Bold" TextColor="Green" />
+        <Label Text="{Binding NeutralCountYear}" FontAttributes="Bold" TextColor="Orange" />
+        <Label Text="{Binding BadCountYear}" FontAttributes="Bold" TextColor="Red" />
     </StackLayout>
-    
+
 </ContentPage>
