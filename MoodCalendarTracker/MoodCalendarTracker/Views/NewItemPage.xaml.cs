@@ -21,6 +21,12 @@ namespace MoodCalendarTracker.Views
             BindingContext = viewModel;
         }
 
+        public static Color DarkenColor(Color color)
+        {
+            return color.MultiplyAlpha(0.7);
+        }
+
+
         private void OnMoodButtonClicked(object sender, EventArgs e)
         {
             // When a mood button is clicked, update the selected mood in the ViewModel
