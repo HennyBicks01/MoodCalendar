@@ -10,6 +10,48 @@ namespace MoodCalendarTracker.ViewModels
 {
     public class ItemsViewModel : BaseViewModel
     {
+        private int goodCountAll;
+        public int GoodCountAll
+        {
+            get => goodCountAll;
+            private set
+            {
+                if (goodCountAll != value)
+                {
+                    goodCountAll = value;
+                    OnPropertyChanged(nameof(GoodCountAll));
+                }
+            }
+        }
+
+        private int neutralCountAll;
+        public int NeutralCountAll
+        {
+            get => neutralCountAll;
+            private set
+            {
+                if (neutralCountAll != value)
+                {
+                    neutralCountAll = value;
+                    OnPropertyChanged(nameof(NeutralCountAll));
+                }
+            }
+        }
+
+        private int badCountAll;
+        public int BadCountAll
+        {
+            get => badCountAll;
+            private set
+            {
+                if (badCountAll != value)
+                {
+                    badCountAll = value;
+                    OnPropertyChanged(nameof(BadCountAll));
+                }
+            }
+        }
+
         private int goodCountMonth;
         public int GoodCountMonth
         {
@@ -23,8 +65,6 @@ namespace MoodCalendarTracker.ViewModels
                 }
             }
         }
-
-        // Similar changes for other properties...
 
         private int neutralCountMonth;
         public int NeutralCountMonth
@@ -96,6 +136,20 @@ namespace MoodCalendarTracker.ViewModels
             }
         }
 
+        private double averageMoodAll;
+        public double AverageMoodAll
+        {
+            get => averageMoodAll;
+            private set
+            {
+                if (Math.Abs(averageMoodAll - value) > 0.01)
+                {
+                    averageMoodAll = value;
+                    OnPropertyChanged(nameof(AverageMoodAll));
+                }
+            }
+        }
+
         private double averageMoodMonth;
         public double AverageMoodMonth
         {
@@ -134,10 +188,12 @@ namespace MoodCalendarTracker.ViewModels
         {
             // Get the current date
             DateTime currentDate = DateTime.Now;
+            DateTime allAgo = currentDate.AddYears(-100);
             DateTime monthAgo = currentDate.AddMonths(-1);
             DateTime yearAgo = currentDate.AddYears(-1);
 
             // Reset counts
+            GoodCountAll = NeutralCountAll = BadCountAll = 0;
             GoodCountMonth = NeutralCountMonth = BadCountMonth = 0;
             GoodCountYear = NeutralCountYear = BadCountYear = 0;
 
@@ -148,8 +204,14 @@ namespace MoodCalendarTracker.ViewModels
             OnPropertyChanged(nameof(GoodCountYear));
             OnPropertyChanged(nameof(NeutralCountYear));
             OnPropertyChanged(nameof(BadCountYear));
+            OnPropertyChanged(nameof(GoodCountAll));
+            OnPropertyChanged(nameof(NeutralCountAll));
+            OnPropertyChanged(nameof(BadCountAll));
 
             // After calculating the counts, update the properties
+            GoodCountAll = goodCountAll;
+            NeutralCountAll = neutralCountAll;
+            BadCountAll = badCountAll;
             GoodCountMonth = goodCountMonth;
             NeutralCountMonth = neutralCountMonth;
             BadCountMonth = badCountMonth;
@@ -159,6 +221,22 @@ namespace MoodCalendarTracker.ViewModels
 
             foreach (var dateStatus in GlobalVariables.DateStatus)
             {
+                if (dateStatus.Key >= allAgo)
+                {
+                    switch (dateStatus.Value.Item1)
+                    {
+                        case "Good":
+                            GoodCountAll++;
+                            break;
+                        case "Neutral":
+                            NeutralCountAll++;
+                            break;
+                        case "Bad":
+                            BadCountAll++;
+                            break;
+                    }
+                }
+
                 if (dateStatus.Key >= monthAgo)
                 {
                     switch (dateStatus.Value.Item1)
@@ -194,6 +272,13 @@ namespace MoodCalendarTracker.ViewModels
         }
         public void CalculateAverageMoods()
         {
+            // Calculate the average mood for the past all-time
+            int totalMoodsAll = GoodCountAll + NeutralCountAll + BadCountAll;
+            if (totalMoodsAll > 0)
+            {
+                AverageMoodAll = (GoodCountAll - BadCountAll) / (double)totalMoodsAll;
+            }
+
             // Calculate the average mood for the past month
             int totalMoodsMonth = GoodCountMonth + NeutralCountMonth + BadCountMonth;
             if (totalMoodsMonth > 0)
@@ -209,10 +294,12 @@ namespace MoodCalendarTracker.ViewModels
             }
 
             // Trigger the PropertyChanged event for the average mood properties
+            OnPropertyChanged(nameof(AverageMoodAll));
             OnPropertyChanged(nameof(AverageMoodMonth));
             OnPropertyChanged(nameof(AverageMoodYear));
 
             // After calculating the averages, update the properties
+            AverageMoodAll = averageMoodAll;
             AverageMoodMonth = averageMoodMonth;
             AverageMoodYear = averageMoodYear;
         }
